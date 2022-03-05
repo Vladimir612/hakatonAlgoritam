@@ -1,5 +1,6 @@
 const tri = document.getElementById("triangle").getContext("2d");
 
+//Prostor koji je potreban da se odvoji da bi glavni trougao bio jednakostranican
 const beliProstor = 600 - (600 * Math.sqrt(3)) / 2;
 
 const nacrtajTrougao = (trougao, fillStyle) => {
@@ -24,29 +25,29 @@ const izracunajDuzinu = ({ x1, y1 }, { x2, y2 }) => {
 
   return Math.sqrt(x * x + y * y);
 };
-const func = (duzina, tackaVrh, brojac) => {
-  const visina = visinaTrougla(duzina);
-  let prvaTacka = {
-    x: tackaVrh.x - duzina / 4,
-    y: tackaVrh.y + visina / 2,
-  };
 
-  let drugaTacka = {
-    x: tackaVrh.x + duzina / 4,
-    y: tackaVrh.y + visina / 2,
-  };
-  let trecaTacka = {
-    x: tackaVrh.x,
-    y: tackaVrh.y + visina,
-  };
+//brojac oznacava koliku dubinu u trouglu zelimo
+const sjerpinskiTrougao = (duzina, tackaVrh, brojac) => {
+  const visina = visinaTrougla(duzina);
 
   const trougao = {
-    prvaTacka: prvaTacka,
-    drugaTacka: drugaTacka,
-    trecaTacka: trecaTacka,
+    prvaTacka: {
+      x: tackaVrh.x - duzina / 4,
+      y: tackaVrh.y + visina / 2,
+    },
+    drugaTacka: {
+      x: tackaVrh.x + duzina / 4,
+      y: tackaVrh.y + visina / 2,
+    },
+    trecaTacka: {
+      x: tackaVrh.x,
+      y: tackaVrh.y + visina,
+    },
   };
 
   nacrtajTrougao(trougao, "white");
+
+  //Sledece tacke oznacavaju vrhove gornjeg, levog i desnog trougla
   const tackaVrh2 = {
     x: trougao.trecaTacka.x,
     y: tackaVrh.y,
@@ -62,14 +63,15 @@ const func = (duzina, tackaVrh, brojac) => {
     y: trougao.drugaTacka.y,
   };
 
+  //Za svaki trougao idemo u rekurziju do odredjene dubine
   if (brojac) {
-    func(duzina / 2, tackaVrh2, brojac - 1);
-    func(duzina / 2, tackaVrh3, brojac - 1);
-    func(duzina / 2, tackaVrh4, brojac - 1);
+    sjerpinskiTrougao(duzina / 2, tackaVrh2, brojac - 1);
+    sjerpinskiTrougao(duzina / 2, tackaVrh3, brojac - 1);
+    sjerpinskiTrougao(duzina / 2, tackaVrh4, brojac - 1);
   }
 };
 
-const trougao = {
+const glavniTrougao = {
   prvaTacka: {
     x: 0,
     y: 600,
@@ -99,8 +101,10 @@ const bojaInput = document.getElementById("boja");
 const iscrtajSve = () => {
   let broj = select.options[select.selectedIndex].value;
   let boja = bojaInput.value;
-  nacrtajTrougao(trougao, boja);
-  func(duzinaGlavnog, vrhovnaTacka, broj - 1);
+  //Iscrtavanje glavnog trougla
+  nacrtajTrougao(glavniTrougao, boja);
+  //Iscrtavanje ostalih trouglova kako bismo dobili SJerpinski trougao
+  sjerpinskiTrougao(duzinaGlavnog, vrhovnaTacka, broj - 1);
 };
 
 dugmeIscrtaj.addEventListener("click", iscrtajSve);
