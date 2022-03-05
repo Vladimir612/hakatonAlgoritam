@@ -1,0 +1,21 @@
+.slika {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+}

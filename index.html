@@ -4,13 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
   </head>
   <body>
-    <h1>Hakaton 2022</h1>
-    <h3>Triangle</h3>
+    <div class="content">
+      <div class="info">
+        <h1>Bitange i princeza</h1>
+        <h3>Trougao Sjerpinskog</h3>
+        <label for="trouglovi">Odaberi broj trouglova: </label>
 
-    <canvas id="triangle" width="600px" height="600px"></canvas>
+        <select name="trouglovi" id="trouglovi">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        <input type="color" id="boja" />
+
+        <button id="iscrtaj">Iscrtaj</button>
+        <p>Pritisnite dugme iscrtaj kako biste videli sliku.</p>
+      </div>
+      <div class="slika">
+        <canvas id="triangle" width="600px" height="600px"></canvas>
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

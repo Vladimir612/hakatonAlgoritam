@@ -84,8 +84,6 @@ const trougao = {
   },
 };
 
-nacrtajTrougao(trougao, "blue");
-
 const duzinaGlavnog = 600;
 const visina = (duzinaGlavnog * Math.sqrt(3)) / 2;
 
@@ -94,4 +92,15 @@ const vrhovnaTacka = {
   y: beliProstor,
 };
 
-func(duzinaGlavnog, vrhovnaTacka, 2);
+const select = document.getElementById("trouglovi");
+const dugmeIscrtaj = document.getElementById("iscrtaj");
+const bojaInput = document.getElementById("boja");
+
+const iscrtajSve = () => {
+  let broj = select.options[select.selectedIndex].value;
+  let boja = bojaInput.value;
+  nacrtajTrougao(trougao, boja);
+  func(duzinaGlavnog, vrhovnaTacka, broj - 1);
+};
+
+dugmeIscrtaj.addEventListener("click", iscrtajSve);
