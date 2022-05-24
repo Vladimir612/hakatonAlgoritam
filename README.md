@@ -1,8 +1,15 @@
 <h1>The sierpian triangle</h1>
 
 ![image](https://user-images.githubusercontent.com/53167193/169936454-064c8ecc-a103-4c12-9df8-a8a6ef89f8e5.png)
- 
-In this picture we have black triangle and transparent triangles inside of him. Lets call black triangle the main triangle. Inside him we have middle transparent triangle. That middle triangle has upper, left and right triangles that have same rule as main triangle. That means we will use recursion.
+
+In this picture we have purple triangle and transparent triangles inside of him. Lets call purple triangle the main triangle. 
+
+![image](https://user-images.githubusercontent.com/53167193/170053404-f211cb1a-49f0-4f61-8de3-72a5d67c07ed.png)
+
+Inside him we have middle transparent triangle. That middle triangle has upper, left and right triangles that have same rule as main triangle. That means we will use recursion.
+
+![image](https://user-images.githubusercontent.com/53167193/170053663-50308e65-48e2-4ea0-970d-16b3148eaec2.png)
+
 Lets first draw main triangle. In html file we have to make canvas
 
 ![image](https://user-images.githubusercontent.com/53167193/169936596-d17a1e8f-3671-4fea-8feb-44291103277b.png)
@@ -13,7 +20,11 @@ Then in js we insert this line so we can draw on it:
 
 ![image](https://user-images.githubusercontent.com/53167193/169937213-ddda5afa-3831-4735-8203-1b5c321d5db9.png)
 
-Every drawn traingle is drawn with three points in space, secondPoint is topPoint of main triangle. We can’t put 0 for y because than it won’t be equilateral triangle, whiteSpace is space between top point of triangle and top side of square in background.
+Every drawn traingle is drawn with three points in space, secondPoint is topPoint of main triangle. 
+
+We can’t put 0 for y because than it won’t be equilateral triangle, whiteSpace is space between top point of triangle and top side of square in background.
+
+![image](https://user-images.githubusercontent.com/53167193/170054675-20fb2dd4-c784-43c5-86e9-77c2742bfc2b.png)
 
 ![image](https://user-images.githubusercontent.com/53167193/169937311-45de82a8-408f-492b-80c0-5770672ce40f.png)
 
