@@ -1,4 +1,4 @@
-The sierpian triangle
+<h1>The sierpian triangle</h1>
 
 ![image](https://user-images.githubusercontent.com/53167193/169928546-0d9e1464-84ed-42dd-94ed-3cfca9f4abc3.png)
 
