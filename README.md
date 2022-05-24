@@ -6,11 +6,11 @@
 
 In this picture we have purple triangle and transparent triangles inside of him. Lets call purple triangle the main triangle. 
 
-![image](https://user-images.githubusercontent.com/53167193/170053404-f211cb1a-49f0-4f61-8de3-72a5d67c07ed.png)
+![image](https://user-images.githubusercontent.com/53167193/170148626-c9f82dc2-8256-4e3a-8fe4-79cc89a0d124.png)
 
 Inside him we have middle transparent triangle. That middle triangle has upper, left and right triangles that have same rule as main triangle. That means we will use recursion.
 
-![image](https://user-images.githubusercontent.com/53167193/170053663-50308e65-48e2-4ea0-970d-16b3148eaec2.png)
+![image](https://user-images.githubusercontent.com/53167193/170148675-adf56a34-ed05-4d69-8de3-54c5d2c3f4b0.png)
 
 Lets first draw main triangle. In html file we have to make canvas
 
