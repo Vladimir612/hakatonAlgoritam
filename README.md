@@ -9,59 +9,58 @@ Lets first draw main triangle. In html file we have to make canvas
 
 Then in js we insert this line so we can draw on it:
  
-![image](https://user-images.githubusercontent.com/53167193/169928566-3e7dd22b-ea3b-4326-88bc-4a6d064ae8ba.png)
+![image](https://user-images.githubusercontent.com/53167193/169937079-78b10265-95b0-4a3f-88b4-30b7d2a92084.png)
 
-![image](https://user-images.githubusercontent.com/53167193/169928576-d2eec9fb-28c0-4879-b254-d7abb49b9127.png)
+![image](https://user-images.githubusercontent.com/53167193/169937213-ddda5afa-3831-4735-8203-1b5c321d5db9.png)
 
 Every drawn traingle is drawn with three points in space, secondPoint is topPoint of main triangle. We can’t put 0 for y because than it won’t be equilateral triangle, whiteSpace is space between top point of triangle and top side of square in background.
 
-![image](https://user-images.githubusercontent.com/53167193/169928659-77739200-1403-4a09-97b6-90411bd7cc68.png)
+![image](https://user-images.githubusercontent.com/53167193/169937311-45de82a8-408f-492b-80c0-5770672ce40f.png)
 
-![image](https://user-images.githubusercontent.com/53167193/169928671-1416adff-9bdd-4e9f-b967-1011b3088ac6.png) 
+![image](https://user-images.githubusercontent.com/53167193/169937383-2aa8c745-cafe-4076-86b9-31459f28d8cf.png)
  
 drawTriangle function draws triangle in canvas with fill color and three points in space using basic functions of canvas.
 Now lets add input for color and button which will trigger mainDrawFunc and select it in js
 
-![image](https://user-images.githubusercontent.com/53167193/169928705-e3fda222-5f3e-4ec3-a878-446e8980fdc1.png)
+![image](https://user-images.githubusercontent.com/53167193/169937496-e4e8a1b8-dbe5-402b-ac6f-efa7925b10a3.png)
 
-![image](https://user-images.githubusercontent.com/53167193/169928712-e221da03-002e-44ff-b838-ead1f67558f0.png)
+![image](https://user-images.githubusercontent.com/53167193/169937608-5c705f49-9971-4619-9239-13e462bde0d9.png)
  
 Now in mainDrawFunc we will draw main triangle and call sierpianTriangle function which will draw transparent triangles.
  
-![image](https://user-images.githubusercontent.com/53167193/169928736-bd19c8bb-e314-48a0-8c27-4f66c3d11158.png)
-
+![image](https://user-images.githubusercontent.com/53167193/169937707-1532604f-48bf-40ef-b3a9-5c531cce67e9.png)
 
 In sierpianTriangle function we want to draw middle triangle, the rule for him is that he will always have height that is twice smaller than the parent triangle. Thats why we will move y coordinate of left and right point for height / 2 from top point y coordinate. For x coordinates for those two points we see that left one is 1/4 of triangle length moved to left from top point x coordinate, and the right one to the right.
 
-![image](https://user-images.githubusercontent.com/53167193/169928759-58848bcf-4222-415b-a062-73f9d1aa4bfc.png)
+![image](https://user-images.githubusercontent.com/53167193/169937778-ac87667e-f655-45b1-91a1-a6ac64e4a685.png)
  
 Also the bottom point x coordinate will always be the same as the top point x coordinate of the parent one. The bottom point y coordinate will always be the height of parent traingle moved from top point y coordinate.
 
-![image](https://user-images.githubusercontent.com/53167193/169928780-98a6cf4e-ced7-4b30-91f4-e6c3c7e6fed7.png)
- 
+![image](https://user-images.githubusercontent.com/53167193/169937814-25dd67fb-d7f4-4be8-8c4d-8976960c8df4.png)
+
 This is what we want to have after this logic after which we will draw this middle triangle
  
-![image](https://user-images.githubusercontent.com/53167193/169928803-83dec8a5-a674-4d3c-9a84-89680fc1f0ae.png)
+![image](https://user-images.githubusercontent.com/53167193/169937946-f88766cd-a486-45e3-8226-4033bc4d073d.png)
 
 For this we needed helper function triangleHeight which only uses basic math:
 
-![image](https://user-images.githubusercontent.com/53167193/169928822-ccd49b8b-d710-4710-aa31-dfb1cf92c951.png)
+![image](https://user-images.githubusercontent.com/53167193/169938028-c109fc31-52f6-4b6e-8413-d3cf7b52533b.png)
 
 Now we want to find out where are tops of other three triangles so we can then call recursion and do the same things for them
 The top point of upper triangle is the same as the top point of the parent triangle:
 
-![image](https://user-images.githubusercontent.com/53167193/169928850-57b5fcd2-92b0-4d6b-9a6e-8849aeb26ecd.png)
+![image](https://user-images.githubusercontent.com/53167193/169938108-f0378dc5-f174-47f0-97fa-22a496637173.png)
 
 The top point of the left triangle is the same as the left point of middle triangle that we created earlier:
 
-![image](https://user-images.githubusercontent.com/53167193/169928950-8db401c8-1592-414e-8734-2341f2a2f26f.png)
+![image](https://user-images.githubusercontent.com/53167193/169938193-198bc6c1-1d63-400f-9298-354caa80dd96.png)
 
 The top point of the right triangle is the same as the right point of that same middle triangle:
 
-![image](https://user-images.githubusercontent.com/53167193/169928975-c637c69a-3c02-4403-b53a-aec23dc2e29a.png)
+![image](https://user-images.githubusercontent.com/53167193/169938319-3c6c0d66-662c-43bf-b06a-670202fb1468.png)
 
 Now, knowing that each of this three triangles will always have length that is twice smaller and it should have number of triangles in depth decreased for one we call recursion:
 
-![image](https://user-images.githubusercontent.com/53167193/169928985-ed2c17d9-d6aa-4e4f-9d60-7a483207d151.png)
+![image](https://user-images.githubusercontent.com/53167193/169938395-abcd4aa2-3a24-459e-afd5-ab09ec3170cc.png)
 
 That’s it we draw are sierpian triangle.
