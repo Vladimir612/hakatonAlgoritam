@@ -1,7 +1,6 @@
 <h1>The sierpian triangle</h1>
 
-![image](https://user-images.githubusercontent.com/53167193/169928546-0d9e1464-84ed-42dd-94ed-3cfca9f4abc3.png)
-
+![image](https://user-images.githubusercontent.com/53167193/169936371-4f4bd441-e306-49a9-b8ae-db0b953176d9.png)
  
 In this picture we have black triangle and transparent triangles inside of him. Lets call black triangle the main triangle. Inside him we have middle transparent triangle. That middle triangle has upper, left and right triangles that have same rule as main triangle. That means we will use recursion.
 Lets first draw main triangle. In html file we have to make canvas
