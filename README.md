@@ -5,7 +5,7 @@
 In this picture we have black triangle and transparent triangles inside of him. Lets call black triangle the main triangle. Inside him we have middle transparent triangle. That middle triangle has upper, left and right triangles that have same rule as main triangle. That means we will use recursion.
 Lets first draw main triangle. In html file we have to make canvas
 
-![image](https://user-images.githubusercontent.com/53167193/169928558-8e198f64-143b-4249-ac3c-09a5187bb763.png)
+![image](https://user-images.githubusercontent.com/53167193/169936596-d17a1e8f-3671-4fea-8feb-44291103277b.png)
 
 Then in js we insert this line so we can draw on it:
  
