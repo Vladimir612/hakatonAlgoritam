@@ -1,5 +1,7 @@
 <h1>The sierpian triangle</h1>
 
+<p>Our task will be to draw the next triangle in html using js. For drawing we will use canvas.</p>
+
 ![image](https://user-images.githubusercontent.com/53167193/169936454-064c8ecc-a103-4c12-9df8-a8a6ef89f8e5.png)
 
 In this picture we have purple triangle and transparent triangles inside of him. Lets call purple triangle the main triangle. 
