@@ -1,110 +1,99 @@
-const tri = document.getElementById("triangle").getContext("2d");
+const canvasTriangle = document.getElementById("triangle").getContext("2d");
+const select = document.getElementById("triangles");
+const colorInput = document.getElementById("color");
+const drawButton = document.getElementById("draw");
 
-//Prostor koji je potreban da se odvoji da bi glavni trougao bio jednakostranican
-const beliProstor = 600 - (600 * Math.sqrt(3)) / 2;
+//Dimension and coordinates of the main triangle
+const mainSideLength = 600;
 
-const nacrtajTrougao = (trougao, fillStyle) => {
-  const { prvaTacka, drugaTacka, trecaTacka } = trougao;
+/*This space is needed so this can be equilateral triangle, it is space between top point of triangle and top side of square*/
+const whiteSpace = 600 - (600 * Math.sqrt(3)) / 2;
 
-  tri.fillStyle = fillStyle;
-  tri.beginPath();
-  tri.moveTo(prvaTacka.x, prvaTacka.y);
-  tri.lineTo(drugaTacka.x, drugaTacka.y);
-  tri.lineTo(trecaTacka.x, trecaTacka.y);
-  tri.closePath();
-  tri.fill();
+const mainTriangle = {
+  firstPoint: {
+    x: 0,
+    y: mainSideLength,
+  },
+  secondPoint: {
+    x: mainSideLength / 2,
+    y: whiteSpace,
+  },
+  thirdPoint: {
+    x: mainSideLength,
+    y: mainSideLength,
+  },
 };
 
-const visinaTrougla = (stranica) => {
-  return (stranica * Math.sqrt(3)) / 2;
+//this function draws triangle in canvas with fill color and three points in space
+const drawTriangle = (triangle, fillStyle) => {
+  const { firstPoint, secondPoint, thirdPoint } = triangle;
+
+  canvasTriangle.fillStyle = fillStyle;
+  canvasTriangle.beginPath();
+  canvasTriangle.moveTo(firstPoint.x, firstPoint.y);
+  canvasTriangle.lineTo(secondPoint.x, secondPoint.y);
+  canvasTriangle.lineTo(thirdPoint.x, thirdPoint.y);
+  canvasTriangle.closePath();
+  canvasTriangle.fill();
 };
 
-const izracunajDuzinu = ({ x1, y1 }, { x2, y2 }) => {
-  let y = x2 - x1;
-  let x = y2 - y1;
-
-  return Math.sqrt(x * x + y * y);
+const mainDrawFunc = () => {
+  let num = select.options[select.selectedIndex].value;
+  let color = colorInput.value;
+  //Drawing main triangle
+  drawTriangle(mainTriangle, color);
+  //Drawing transparent triangles
+  sierpianTriangle(mainSideLength, mainTriangle.secondPoint, num - 1);
 };
 
-//brojac oznacava koliku dubinu u trouglu zelimo
-const sjerpinskiTrougao = (duzina, tackaVrh, brojac) => {
-  const visina = visinaTrougla(duzina);
+drawButton.addEventListener("click", mainDrawFunc);
 
-  const trougao = {
-    prvaTacka: {
-      x: tackaVrh.x - duzina / 4,
-      y: tackaVrh.y + visina / 2,
+const triangleHeight = (side) => {
+  return (side * Math.sqrt(3)) / 2;
+};
+
+//counter represents the number of triangles that we want in depth
+const sierpianTriangle = (length, topPoint, counter) => {
+  const height = triangleHeight(length);
+
+  //this is the middle triangle that we want to draw in one which is passed
+  const triangle = {
+    firstPoint: {
+      x: topPoint.x - length / 4,
+      y: topPoint.y + height / 2,
     },
-    drugaTacka: {
-      x: tackaVrh.x + duzina / 4,
-      y: tackaVrh.y + visina / 2,
+    secondPoint: {
+      x: topPoint.x + length / 4,
+      y: topPoint.y + height / 2,
     },
-    trecaTacka: {
-      x: tackaVrh.x,
-      y: tackaVrh.y + visina,
+    thirdPoint: {
+      x: topPoint.x,
+      y: topPoint.y + height,
     },
   };
 
-  nacrtajTrougao(trougao, "white");
+  drawTriangle(triangle, "white");
 
-  //Sledece tacke oznacavaju vrhove gornjeg, levog i desnog trougla
-  const tackaVrh2 = {
-    x: trougao.trecaTacka.x,
-    y: tackaVrh.y,
+  //Next points are tops of the left, right and upper triangles seen from the middle one
+  const topPoint2 = {
+    x: topPoint.x,
+    y: topPoint.y,
   };
 
-  const tackaVrh3 = {
-    x: trougao.prvaTacka.x,
-    y: trougao.prvaTacka.y,
+  const topPoint3 = {
+    x: triangle.firstPoint.x,
+    y: triangle.firstPoint.y,
   };
 
-  const tackaVrh4 = {
-    x: trougao.drugaTacka.x,
-    y: trougao.drugaTacka.y,
+  const topPoint4 = {
+    x: triangle.secondPoint.x,
+    y: triangle.secondPoint.y,
   };
 
-  //Za svaki trougao idemo u rekurziju do odredjene dubine
-  if (brojac) {
-    sjerpinskiTrougao(duzina / 2, tackaVrh2, brojac - 1);
-    sjerpinskiTrougao(duzina / 2, tackaVrh3, brojac - 1);
-    sjerpinskiTrougao(duzina / 2, tackaVrh4, brojac - 1);
+  //For every one of them we call recursion to certain level
+  if (counter > 0) {
+    sierpianTriangle(length / 2, topPoint2, counter - 1);
+    sierpianTriangle(length / 2, topPoint3, counter - 1);
+    sierpianTriangle(length / 2, topPoint4, counter - 1);
   }
 };
-
-const glavniTrougao = {
-  prvaTacka: {
-    x: 0,
-    y: 600,
-  },
-  drugaTacka: {
-    x: 300,
-    y: beliProstor,
-  },
-  trecaTacka: {
-    x: 600,
-    y: 600,
-  },
-};
-
-const duzinaGlavnog = 600;
-const visina = (duzinaGlavnog * Math.sqrt(3)) / 2;
-
-const vrhovnaTacka = {
-  x: duzinaGlavnog / 2,
-  y: beliProstor,
-};
-
-const select = document.getElementById("trouglovi");
-const dugmeIscrtaj = document.getElementById("iscrtaj");
-const bojaInput = document.getElementById("boja");
-
-const iscrtajSve = () => {
-  let broj = select.options[select.selectedIndex].value;
-  let boja = bojaInput.value;
-  //Iscrtavanje glavnog trougla
-  nacrtajTrougao(glavniTrougao, boja);
-  //Iscrtavanje ostalih trouglova kako bismo dobili SJerpinski trougao
-  sjerpinskiTrougao(duzinaGlavnog, vrhovnaTacka, broj - 1);
-};
-
-dugmeIscrtaj.addEventListener("click", iscrtajSve);

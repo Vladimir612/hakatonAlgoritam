@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Document</title>
+    <title>The Sierpian triangle</title>
   </head>
   <body>
     <div class="content">
       <div class="info">
-        <h1>Bitange i princeza</h1>
-        <h3>Trougao Sjerpinskog</h3>
-        <label for="trouglovi">Odaberi broj trouglova: </label>
+        <h1>
+          Bitange i princeza <br />
+          The Sierpian triangle
+        </h1>
+        <label for="triangles">Pick number of triangles in depth: </label>
 
-        <select name="trouglovi" id="trouglovi">
+        <select name="triangles" id="triangles">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -25,12 +27,12 @@
           <option value="8">8</option>
           <option value="9">9</option>
         </select>
-        <input type="color" id="boja" />
+        <input type="color" id="color" />
 
-        <button id="iscrtaj">Iscrtaj</button>
-        <p>Pritisnite dugme iscrtaj kako biste videli sliku.</p>
+        <button id="draw">Draw</button>
+        <p>Press draw button to see the triangle.</p>
       </div>
-      <div class="slika">
+      <div class="image">
         <canvas id="triangle" width="600px" height="600px"></canvas>
       </div>
     </div>
